@@ -405,3 +405,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+Back/src/ProEventos.API/ProEventos.db-shm
+.gitignore
+Back/src/ProEventos.API/ProEventos.db-wal
