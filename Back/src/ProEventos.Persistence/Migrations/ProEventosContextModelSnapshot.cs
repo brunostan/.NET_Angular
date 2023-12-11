@@ -23,7 +23,7 @@ namespace ProEventos.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DataEvento")
+                    b.Property<DateTime>("DataEvento")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -39,6 +39,9 @@ namespace ProEventos.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("QtdPessoas")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Telefone")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Tema")
@@ -72,7 +75,7 @@ namespace ProEventos.Persistence.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Quantitade")
+                    b.Property<int>("Quantidade")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -84,8 +87,9 @@ namespace ProEventos.Persistence.Migrations
 
             modelBuilder.Entity("ProEventos.Domain.Palestrante", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -120,13 +124,9 @@ namespace ProEventos.Persistence.Migrations
                     b.Property<int>("PalestranteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("PalestranteId1")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("EventoId", "PalestranteId");
 
-                    b.HasIndex("PalestranteId1");
+                    b.HasIndex("PalestranteId");
 
                     b.ToTable("PalestrantesEventos");
                 });
@@ -147,10 +147,6 @@ namespace ProEventos.Persistence.Migrations
                     b.Property<int?>("PalestranteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("PalestranteId1")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("URL")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -159,7 +155,7 @@ namespace ProEventos.Persistence.Migrations
 
                     b.HasIndex("EventoId");
 
-                    b.HasIndex("PalestranteId1");
+                    b.HasIndex("PalestranteId");
 
                     b.ToTable("RedesSociais");
                 });
@@ -185,7 +181,7 @@ namespace ProEventos.Persistence.Migrations
 
                     b.HasOne("ProEventos.Domain.Palestrante", "Palestrante")
                         .WithMany("PalestrantesEventos")
-                        .HasForeignKey("PalestranteId1")
+                        .HasForeignKey("PalestranteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -202,9 +198,7 @@ namespace ProEventos.Persistence.Migrations
 
                     b.HasOne("ProEventos.Domain.Palestrante", "Palestrante")
                         .WithMany("RedesSociais")
-                        .HasForeignKey("PalestranteId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PalestranteId");
 
                     b.Navigation("Evento");
 

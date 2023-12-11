@@ -2,7 +2,7 @@
 
 namespace ProEventos.Application.Contratos;
 
-public interface IEventosService
+public interface IEventoService
 {
     Task<Evento?> AddEventoAsync(Evento model);
     Task<Evento?> UpdateEventoAsync(int eventoId, Evento model);

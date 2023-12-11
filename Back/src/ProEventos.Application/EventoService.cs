@@ -4,7 +4,7 @@ using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Application
 {
-    internal class EventoService : IEventosService
+    public class EventoService : IEventoService
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IEventoPersist _eventoPersist;

@@ -5,7 +5,7 @@ using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence
 {
-    internal class EventoPersist : IEventoPersist
+    public class EventoPersist : IEventoPersist
     {
         private readonly ProEventosContext _context;
 
@@ -16,14 +16,14 @@ namespace ProEventos.Persistence
 
         public async Task<Evento[]?> GetAllEventosAsync(bool includePalestrantes = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                 .Include(e => e.Lotes)
                 .Include(e => e.RedesSociais);
 
             if (includePalestrantes)
             {
                 query = query
-                    .Include(e => e.PalestrantesEventos)
+                    .Include(e => e.PalestrantesEventos!)
                     .ThenInclude(pe => pe.Palestrante);
             }
 
@@ -34,14 +34,14 @@ namespace ProEventos.Persistence
 
         public async Task<Evento[]?> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                 .Include(e => e.Lotes)
                 .Include(e => e.RedesSociais);
 
             if (includePalestrantes)
             {
                 query = query
-                    .Include(e => e.PalestrantesEventos)
+                    .Include(e => e.PalestrantesEventos!)
                     .ThenInclude(pe => pe.Palestrante);
             }
 
@@ -54,14 +54,14 @@ namespace ProEventos.Persistence
 
         public async Task<Evento?> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                 .Include(e => e.Lotes)
                 .Include(e => e.RedesSociais);
 
             if (includePalestrantes)
             {
                 query = query
-                    .Include(e => e.PalestrantesEventos)
+                    .Include(e => e.PalestrantesEventos!)
                     .ThenInclude(pe => pe.Palestrante);
             }
 

@@ -3,7 +3,7 @@ using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence
 {
-    internal class GeralPersist : IGeralPersist
+    public class GeralPersist : IGeralPersist
     {
         private readonly ProEventosContext _context;
 

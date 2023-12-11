@@ -5,7 +5,7 @@ using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence
 {
-    internal class PalestrantePersist : IPalestrantePersist
+    public class PalestrantePersist : IPalestrantePersist
     {
         private readonly ProEventosContext _context;
 
@@ -22,7 +22,7 @@ namespace ProEventos.Persistence
             if (includeEventos)
             {
                 query = query
-                    .Include(p => p.PalestrantesEventos)
+                    .Include(p => p.PalestrantesEventos!)
                     .ThenInclude(pe => pe.Evento);
             }
 
@@ -39,7 +39,7 @@ namespace ProEventos.Persistence
             if (includeEventos)
             {
                 query = query
-                    .Include(p => p.PalestrantesEventos)
+                    .Include(p => p.PalestrantesEventos!)
                     .ThenInclude(pe => pe.Evento);
             }
 
@@ -58,7 +58,7 @@ namespace ProEventos.Persistence
             if (includeEventos)
             {
                 query = query
-                    .Include(p => p.PalestrantesEventos)
+                    .Include(p => p.PalestrantesEventos!)
                     .ThenInclude(pe => pe.Evento);
             }
 
